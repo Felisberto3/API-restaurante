@@ -94,7 +94,7 @@ class ProductsController {
       .delete()
       .where({ id })
 
-      return response.json(products)
+      return response.json()
     } catch (error) {
       next(error)
     } 
