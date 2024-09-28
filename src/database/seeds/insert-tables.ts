@@ -11,6 +11,5 @@ export async function seed(knex: Knex): Promise<void> {
         { table_number: 3},
         { table_number: 4},
         { table_number: 5},
-       
     ]);
 };
