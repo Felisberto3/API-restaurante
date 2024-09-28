@@ -84,7 +84,21 @@ class OrdersController {
 
   async show(request:Request, response:Response, next: NextFunction) {
     try {
-      return response.json()
+      const table_session_id = z
+      .string()
+      .regex(/^\d+$/,{ message:"Id must be a number"})
+      .transform(Number)
+      .parse(request.params.table_session_id)
+
+
+      const order = await knex<ordersRepository>("orders")
+      .select(
+        knex.raw("COALESCE(SUM(orders.price * orders.quantity), 0) as total"),
+        knex.raw("COALESCE(SUM( orders.quantity), 0) as quantity")
+      )
+      .where({ table_session_id })
+
+      return response.json(order)
     } catch (error) {
       next(error)
     }
