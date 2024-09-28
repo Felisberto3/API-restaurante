@@ -1,7 +1,7 @@
 import { knex } from "@/database/knex"
 import { AppError } from "@/util/AppError"
 import { Request, Response, NextFunction } from "express"
-import {z} from "zod"
+import { z } from "zod"
 class OrdersController {
   async index(request:Request, response:Response, next: NextFunction) {
     try {
